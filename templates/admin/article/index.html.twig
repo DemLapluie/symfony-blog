@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+    <h1>Liste articles</h1>
+
+    <p>
+        <a href="{{ path('app_admin_article_edit') }}">
+            Ajouter une catégorie
+        </a>
+    </p>
+
+    <table class="table">
+        <tr>
+            <th>Id</th>
+            <th>Titre</th>
+            <th>Auteur</th>
+            <th>Catégorie</th>
+            <th>Date et Heure</th>
+            <th>Nb  commentaires</th>
+        </tr>
+
+
+        {% for article in articles %}
+            <tr>
+                <td>{{ article.id }}</td>
+                <td>{{ article.title }}</td>
+                <td>{{ article.author  }}</td>
+                <td>{{ article.category.name  }}</td>
+                <td>{{ article.publicationDate| date( 'd/m/Y - H:i' ) }}</td>
+                <td><a href="{{ path('app_admin_comment_index', {id: article.id}) }}">{{ article.comments|length }} </a></td>
+                <td class="row d-flex justify-content-between">
+                    <a href="{{ path('app_admin_article_edit', {id: article.id}) }}"
+                       class="btn btn-primary">
+                        Modifier
+                    </a>
+                    <a style="margin: 0px 0px 0px 2px;" href="{{ path('app_admin_article_delete', {id: article.id}) }}"
+                       class="btn btn-danger">
+                        Supprimer
+                    </a>
+                </td>
+
+            </tr>
+        {% endfor %}
+
+
+    </table>
+
+{% endblock %}

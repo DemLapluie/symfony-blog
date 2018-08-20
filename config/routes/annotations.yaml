@@ -1,0 +1,9 @@
+controllers:
+    resource: ../../src/Controller/
+    type: annotation
+
+    #toutes les routes définies dans les controlleurs contenus dans le rep admin sont prefix par /admin
+admin:
+    resource: ../../src/Controller/Admin
+    type: annotation
+    prefix: /admin
